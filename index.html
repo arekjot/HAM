@@ -6,28 +6,33 @@
     <title>..::SP7AJ Homepage::..</title>
     <style>
         body {
-        	background:url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
-            color: limegreen;
+            background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
             background-color: #121212;
             color: #00ffcc;
             font-family: "Times New Roman", monospace;
             text-align: center;
         }
+        
         h1 {
-            text-shadow: 2px 2px 4px #000;
-            color: #871A85;
+            text-shadow: 3px 3px 6px #000;
+            color: #FFD700; /* Retro złoty kolor */
+            font-size: 32px;
         }
+
         .container {
             width: 80%;
             margin: auto;
             padding: 20px;
             border: 2px solid #00ffcc;
+            background-color: rgba(0, 0, 0, 0.6); /* Półprzezroczyste tło */
         }
+
         .gallery img {
             width: 200px;
             margin: 10px;
             border: 2px solid #00ffcc;
         }
+
         a {
             color: #ff6600;
             text-decoration: none;
@@ -36,53 +41,75 @@
             text-decoration: underline;
         }
         
+        /* Wahadłowiec po lewej stronie */
         .planet {
             position: absolute;
-            left: 10px; /* Ustawienie GIF-a blisko lewej krawędzi */
-            top: 50px; /* Dopasowanie wysokości */
-        
+            left: 10px;
+            top: 50px;
+        }
+
+        /* Nagłówek z GIF-em po prawej */
         .header {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; /* Odstęp między tekstem a GIF-em */
+            gap: 15px;
             margin-top: 50px;
         }
+
         .header img {
-            width: 50px; /* Możesz dostosować wielkość GIF-a */
+            width: 50px;
             height: auto;
         }
-        
+
+        /* Stylizacja linków do obrazków */
+        .gallery a img {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .gallery a img:hover {
+            transform: scale(1.1); /* Powiększenie obrazka po najechaniu */
+        }
         
     </style>
 </head>
 <body>
 
-<!-- GIF po lewej stronie -->
+    <!-- GIF po lewej stronie -->
     <img class="planet" src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Shuttle GIF">
 
+    <div class="header">
+        <h1>..::SP7AJ Homepage::..</h1>
+        <img src="https://www.cameronsworld.net/img/content/1/21.gif" alt="Retro GIF">
+    </div>
 
-    <img src="https://www.cameronsworld.net/img/content/2/14.gif" alt="Shuttle GIF">
+    <img src="https://www.cameronsworld.net/img/content/2/14.gif" alt="Retro Icon">
 
-    <h1>..::SP7AJ Homepage::..</h1>
-    
-    <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
-    
     <div class="container">
         <h2>ABOUT ME:</h2>
-        <p>Hi there! I'm Arek SP7AJ, living in Lodz, Poland. I'm passionate about almost everything about ham radio, but DXing and CW is what captivated my heart. I also enjoy the retro side of the hobby, so I like to collect old equipment and seom books. Looking forward to seeing you on the bands, VY 73!</p>
+        <p>Hi there! I'm Arek SP7AJ, living in Lodz, Poland. I'm passionate about almost everything about ham radio, but DXing and CW is what captivated my heart. I also enjoy the retro side of the hobby, so I like to collect old equipment and some books. Looking forward to seeing you on the bands, VY 73!</p>
     </div>
+
     <div class="container">
         <h2>A little gallery of my rig:</h2>
         <div class="gallery">
-            <img src="\images\kenwoodth751.jpg" alt="Kenwood TH75">
-            <img src="\images\icomic2e1.jpg" alt="Icom IC2E">
-            <img src="radio3.jpg" alt="Radio 3">
-            <img src="radio4.jpg" alt="Radio 4">
+            <a href="images/kenwoodth751.jpg" target="_blank">
+                <img src="images/kenwoodth751.jpg" alt="Kenwood TH75">
+            </a>
+            <a href="images/icomic2e1.jpg" target="_blank">
+                <img src="images/icomic2e1.jpg" alt="Icom IC2E">
+            </a>
+            <a href="images/radio3.jpg" target="_blank">
+                <img src="images/radio3.jpg" alt="Radio 3">
+            </a>
+            <a href="images/radio4.jpg" target="_blank">
+                <img src="images/radio4.jpg" alt="Radio 4">
+            </a>
         </div>
     </div>
-    <p>
+
     <p>Any questions?</p>
-    <a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
+    <a href="mailto:arek@sp7aj.com">EMAIL ME</a>
+
 </body>
 </html>
