@@ -6,9 +6,11 @@
     <title>..::SP7AJ Homepage::..</title>
     <style>
         body {
+        						 background:url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
+            color: limegreen;
             background-color: #121212;
             color: #00ffcc;
-            font-family: "Courier New", monospace;
+            font-family: "Times New Roman", monospace;
             text-align: center;
         }
         h1 {
@@ -32,13 +34,42 @@
         a:hover {
             text-decoration: underline;
         }
+        
+        .planet {
+            position: absolute;
+            left: 10px; /* Ustawienie GIF-a blisko lewej krawędzi */
+            top: 50px; /* Dopasowanie wysokości */
+        
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Odstęp między tekstem a GIF-em */
+            margin-top: 50px;
+        }
+        .header img {
+            width: 50px; /* Możesz dostosować wielkość GIF-a */
+            height: auto;
+        }
+        
+        
     </style>
 </head>
 <body>
+
+<!-- GIF po lewej stronie -->
+    <img class="planet" src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Shuttle GIF">
+
+
+    <img src="https://www.cameronsworld.net/img/content/2/14.gif" alt="Shuttle GIF">
+
     <h1>..::SP7AJ Homepage::..</h1>
+    
+    <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
+    
     <div class="container">
         <h2>ABOUT ME:</h2>
-        <p>Hi there! I'm Arek SP7AJ. I'm passionate about almost everything about ham radio, but DXing and CW is what captivated my heart. I also enjoy the retro side of the hobby, so I like to collect old equipment and seom books. Looking forward to seeing you on the bands, VY 73!</p>
+        <p>Hi there! I'm Arek SP7AJ, living in Lodz, Poland. I'm passionate about almost everything about ham radio, but DXing and CW is what captivated my heart. I also enjoy the retro side of the hobby, so I like to collect old equipment and seom books. Looking forward to seeing you on the bands, VY 73!</p>
     </div>
     <div class="container">
         <h2>A little gallery of my rig:</h2>
@@ -46,8 +77,11 @@
             <img src="radio1.jpg" alt="Radio 1">
             <img src="radio2.jpg" alt="Radio 2">
             <img src="radio3.jpg" alt="Radio 3">
+            <img src="radio4.jpg" alt="Radio 4">
         </div>
     </div>
-    <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
+    <p>
+    <p>Any questions?</p>
+    <a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
 </body>
 </html>
