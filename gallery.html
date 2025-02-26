@@ -9,18 +9,19 @@
             background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
             background-color: #121212;
             color: #0000FF;
-            font-family: "Times New Roman", monospace;
+            font-family: "Times New Roman", serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
             padding: 20px;
         }
 
         .container {
             width: 80%;
+            max-width: 900px;
             padding: 20px;
             border: 2px solid #00ffcc;
             background: rgba(18, 18, 18, 0.9); /* Ciemne, półprzezroczyste tło */
@@ -36,6 +37,8 @@
 
         .gallery img {
             width: 200px;
+            height: 150px;
+            object-fit: cover;
             border: 2px solid #00ffcc;
             transition: transform 0.3s ease;
         }
@@ -56,8 +59,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>A gallery of my vintage HF contraptions:)</h2>
-        <a>Hopefully, it will keep growing!</a>
+        <h2>A gallery of my vintage HF contraptions :)</h2>
+        <p>Hopefully, it will keep growing!</p>
         <div class="gallery">
             <a href="images/kenwoodth751.jpg" target="_blank">
                 <img src="images/kenwoodth751.jpg" alt="Kenwood TH75 1">
