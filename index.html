@@ -11,19 +11,19 @@
             color: #00ffcc;
             font-family: "Times New Roman", serif;
             display: flex;
-            flex-direction: row;
         }
 
         /* Lewe menu */
         .sidebar {
-            width: 150px;
+            width: 200px;
             height: 100vh;
             padding: 15px;
             border-right: 2px solid #00ffcc;
             position: fixed;
-            left: 0;
+            left: -200px;
             top: 0;
             background-color: #121212;
+            transition: left 0.3s ease-in-out;
         }
 
         .sidebar a {
@@ -38,9 +38,26 @@
             text-decoration: underline;
         }
 
+        .menu-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background-color: #00ffcc;
+            color: #121212;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
         /* Główna treść */
         .content {
-            margin-left: 160px;
+            margin-left: 20px;
             padding: 20px;
             text-align: center;
             flex-grow: 1;
@@ -59,47 +76,21 @@
             height: 80vh;
             border: none;
         }
-
-        /* Menu mobilne */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                text-align: center;
-            }
-
-            .sidebar h2 {
-                display: none;
-            }
-
-            .sidebar a {
-                display: inline-block;
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .content {
-                margin-left: 0;
-                padding-top: 10px;
-            }
-
-            iframe {
-                height: 60vh;
-            }
-        }
     </style>
     <script>
+        function toggleMenu() {
+            document.querySelector(".sidebar").classList.toggle("open");
+        }
+
         function loadPage(page) {
             document.getElementById("main-content").src = page;
         }
     </script>
 </head>
 <body>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
     <div class="sidebar">
-        <h2>Menu</h2>
         <a href="#" onclick="loadPage('aboutme.html')">About Me</a>
         <a href="#" onclick="loadPage('gallery.html')">Gallery</a>
         <a href="#" onclick="loadPage('projects.html')">Projects</a>
@@ -113,6 +104,5 @@
         <p>Any questions?</p>
         <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
     </div>
-
 </body>
 </html>
