@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>..::SP7AJ Homepage::..</title>
+    <style>
+        body {
+            background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
+            background-color: #121212;
+            color: #00ffcc; /* kolorek pinkish */
+            font-family: "Times New Roman", monospace;
+            text-align: center;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 4px #000;
+            color: #871A85;
+            font-size: 36px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            padding: 20px;
+            border-right: 2px solid #00ffcc;
+            text-align: left;
+        }
+        
+         .sidebar a {
+            display: block;
+            color: #ff6600;
+            text-decoration: none;
+            padding: 10px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #00ffcc;
+        }
+
+        .gallery img {
+            width: 200px;
+            margin: 10px;
+            border: 2px solid #00ffcc;
+        }
+
+        a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .planet {
+            position: absolute;
+            left: 10px; /* Ustawienie GIF-a blisko lewej krawędzi */
+            top: 50px; /* Dopasowanie wysokości */
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Odstęp między tekstem a GIF-em */
+            margin-top: 50px;
+        }
+
+        .header img {
+            width: 50px; /* Możesz dostosować wielkość GIF-a */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GIF po lewej stronie -->
+    <img class="planet" src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Shuttle GIF">
+
+    <img src="https://www.cameronsworld.net/img/content/2/14.gif" alt="Shuttle GIF">
+
+    <h1>..::SP7AJ Homepage::..</h1>
+
+    <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
+
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="#" onclick="loadPage('about.html')">About Me</a>
+        <a href="#" onclick="loadPage('equipment.html')">Equipment</a>
+        <a href="#" onclick="loadPage('gallery.html')">Gallery</a>
+        <a href="#" onclick="loadPage('logs.html')">Logs</a>
+        <a href="#" onclick="loadPage('contact.html')">Contact</a>
+    </div>
+    
+  
+
+    <p>Any questions?</p>
+    <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
+
+</body>
+</html>
