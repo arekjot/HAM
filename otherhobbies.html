@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>..::Gallery::..</title>
+    <style>
+        body {
+            background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
+            background-color: #121212;
+            color: #0000FF;
+            font-family: "Times New Roman", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            padding: 20px;
+            border: 2px solid #00ffcc;
+            background: rgba(18, 18, 18, 0.9); /* Ciemne, półprzezroczyste tło */
+            box-shadow: 0 0 15px #00ffcc; /* Efekt neonowego blasku */
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid #00ffcc;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>A gallery of my vintage ham radio contraptions :)</h2>
+        <p>Hopefully, it will keep growing!</p>
+        <div class="gallery">
+            <a href="images/kenwoodth751.jpg" target="_blank">
+                <img src="images/kenwoodth751.jpg" alt="Kenwood TH75 1">
+            </a>
+            <a href="images/kenwoodth752.jpg" target="_blank">
+                <img src="images/kenwoodth752.jpg" alt="Kenwood TH75 2">
+            </a>
+            <a href="images/icomic2e1.jpg" target="_blank">
+                <img src="images/icomic2e1.jpg" alt="Icom IC2E 1">
+            </a>
+            <a href="images/icomic2e2.jpg" target="_blank">
+                <img src="images/icomic2e2.jpg" alt="Icom IC2E 2">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
