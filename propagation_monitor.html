@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HF Propagation Console</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+    }
+    h1 {
+      color: #0ff;
+    }
+    .label {
+      display: inline-block;
+      width: 160px;
+    }
+    .data {
+      color: #0f0;
+    }
+    .warning {
+      color: #f80;
+    }
+    .alert {
+      color: #f00;
+    }
+    .legend {
+      margin-top: 40px;
+      padding-top: 10px;
+      border-top: 1px dashed #0f0;
+    }
+    .legend h2 {
+      color: #0ff;
+    }
+    .legend-entry {
+      margin: 4px 0;
+    }
+    .param {
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>📡 HF Propagation Monitor</h1>
+
+  <div><span class="label">SFI:</span> <span id="sfi" class="data">--</span></div>
+  <div><span class="label">Sunspot Number:</span> <span id="sn" class="data">--</span></div>
+  <div><span class="label">K-Index:</span> <span id="k" class="data">--</span></div>
+  <div><span class="label">A-Index:</span> <span id="a" class="data">--</span></div>
+  <div><span class="label">Bz:</span> <span id="bz" class="data">--</span></div>
+  <div><span class="label">Bt:</span> <span id="bt" class="data">--</span></div>
+  <div><span class="label">Solar Wind:</span> <span id="solarWind" class="data">--</span></div>
+  <div><span class="label">X-Ray:</span> <span id="xray" class="data">--</span></div>
+  <div><span class="label">Proton Flux:</span> <span id="proton" class="data">--</span></div>
+  <div><span class="label">Electron Flux:</span> <span id="electron" class="data">--</span></div>
+  <div><span class="label">Aurora Activity:</span> <span id="aurora" class="data">--</span></div>
+
+  <div class="legend">
+    <h2>📘 Legend – What That All Means?</h2>
+    <div class="legend-entry"><span class="param">SFI > 100:</span> Great high-band conditions (15m, 12m, 10m).</div>
+    <div class="legend-entry"><span class="param">Sunspot Number > 50:</span> Active sun = more ionization = better skip.</div>
+    <div class="legend-entry"><span class="param">K-index ≤ 3:</span> Stable geomagnetic field. Quiet conditions.</div>
+    <div class="legend-entry"><span class="param">A-index < 10:</span> Low disturbance over 24h. Good overall conditions.</div>
+    <div class="legend-entry"><span class="param">Bz > 0:</span> Earth's magnetic field is shielded – calm space weather.</div>
+    <div class="legend-entry"><span class="param">Solar Wind < 500 km/s:</span> Quiet solar wind = low disruptions.</div>
+    <div class="legend-entry"><span class="param">X-Ray: A/B/C:</span> Normal. M/X-class may indicate solar flare impact.</div>
+    <div class="legend-entry"><span class="param">Proton/Electron Flux low:</span> Less absorption in polar paths.</div>
+    <div class="legend-entry"><span class="param">Aurora Activity low (Kp < 4):</span> No polar blackout risk.</div>
+  </div>
+
+  <script>
+    async function fetchPropagationData() {
+      try {
+        const [kData, sfiData, swData, plasmaData, xrayData, protonData, electronData] = await Promise.all([
+          fetch('https://services.swpc.noaa.gov/json/planetary_k_index_1m.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/goes/primary/integral-electrons-1-day.json').then(r => r.json())
+        ]);
+
+        const latestK = kData[kData.length - 1].k_index;
+        const latestSFI = sfiData[sfiData.length - 1];
+        const latestMag = swData[swData.length - 1];
+        const latestPlasma = plasmaData[plasmaData.length - 1];
+        const latestXray = xrayData[xrayData.length - 1].flux;
+        const latestProton = protonData[protonData.length - 1].flux;
+        const latestElectron = electronData[electronData.length - 1].flux;
+
+        const data = {
+          sfi: latestSFI.solar_flux,
+          sn: latestSFI.sunspot_number,
+          a: latestSFI.a_index,
+          k: latestK,
+          bz: parseFloat(latestMag.bz_gsm).toFixed(1),
+          bt: parseFloat(latestMag.bt).toFixed(1),
+          solarWind: parseFloat(latestPlasma.speed).toFixed(0),
+          xray: latestXray,
+          proton: `${latestProton} pfu`,
+          electron: `${latestElectron} cm²·s·sr`,
+          aurora: `Kp ${latestK}`
+        };
+
+        for (let key in data) {
+          const el = document.getElementById(key);
+          if (!el) continue;
+          el.textContent = data[key];
+
+          if (key === "k" && data.k >= 5) el.className = "alert";
+          if (key === "bz" && parseFloat(data.bz) < -5) el.className = "alert";
+          if (key === "aurora" && data.k >= 5) el.className = "warning";
+        }
+      } catch (err) {
+        console.error("Failed to fetch propagation data:", err);
+      }
+    }
+
+    fetchPropagationData();
+    setInterval(fetchPropagationData, 3600000); // Refresh every hour
+  </script>
+</body>
+</html>
