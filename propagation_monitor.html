@@ -45,77 +45,103 @@
 <body>
   <h1>📡 HF Propagation Monitor</h1>
 
-  <div><span class="label">SFI:</span> <span id="sfi" class="data">--</span></div>
-  <div><span class="label">Sunspot Number:</span> <span id="sn" class="data">--</span></div>
-  <div><span class="label">K-Index:</span> <span id="k" class="data">--</span></div>
+  <!-- Core parameters -->
+  <div><span class="label">SFI (F10.7cm):</span> <span id="sfi" class="data">--</span></div>
+  
   <div><span class="label">A-Index:</span> <span id="a" class="data">--</span></div>
+  <div><span class="label">K-Index:</span> <span id="k" class="data">--</span></div>
+
+  <!-- Magnetic and solar wind -->
   <div><span class="label">Bz:</span> <span id="bz" class="data">--</span></div>
   <div><span class="label">Bt:</span> <span id="bt" class="data">--</span></div>
-  <div><span class="label">Solar Wind:</span> <span id="solarWind" class="data">--</span></div>
+  <div><span class="label">Solar Wind (km/s):</span> <span id="solarWind" class="data">--</span></div>
+
+  <!-- Flux data -->
   <div><span class="label">X-Ray:</span> <span id="xray" class="data">--</span></div>
   <div><span class="label">Proton Flux:</span> <span id="proton" class="data">--</span></div>
   <div><span class="label">Electron Flux:</span> <span id="electron" class="data">--</span></div>
+
+  <!-- Aurora -->
   <div><span class="label">Aurora Activity:</span> <span id="aurora" class="data">--</span></div>
 
+  <!-- Sunspot region details -->
+  <div><span class="label">Region ID:</span> <span id="region" class="data">--</span></div>
+  <div><span class="label">Number of Spots:</span> <span id="numspot" class="data">--</span></div>
+  <div><span class="label">Spot Class:</span> <span id="spotclass" class="data">--</span></div>
+  <div><span class="label">Zurich Class:</span> <span id="zurich" class="data">--</span></div>
+  <div><span class="label">Active Area:</span> <span id="area" class="data">--</span></div>
+  <div><span class="label">Magnetic Class:</span> <span id="magclass" class="data">--</span></div>
+
   <div class="legend">
-    <h2>📘 Legend – What That All Means?</h2>
-    <div class="legend-entry"><span class="param">SFI > 100:</span> Great high-band conditions (15m, 12m, 10m).</div>
-    <div class="legend-entry"><span class="param">Sunspot Number > 50:</span> Active sun = more ionization = better skip.</div>
-    <div class="legend-entry"><span class="param">K-index ≤ 3:</span> Stable geomagnetic field. Quiet conditions.</div>
-    <div class="legend-entry"><span class="param">A-index < 10:</span> Low disturbance over 24h. Good overall conditions.</div>
-    <div class="legend-entry"><span class="param">Bz > 0:</span> Earth's magnetic field is shielded – calm space weather.</div>
-    <div class="legend-entry"><span class="param">Solar Wind < 500 km/s:</span> Quiet solar wind = low disruptions.</div>
-    <div class="legend-entry"><span class="param">X-Ray: A/B/C:</span> Normal. M/X-class may indicate solar flare impact.</div>
-    <div class="legend-entry"><span class="param">Proton/Electron Flux low:</span> Less absorption in polar paths.</div>
-    <div class="legend-entry"><span class="param">Aurora Activity low (Kp < 4):</span> No polar blackout risk.</div>
+    <h2>📘 Legend – What Means Good Propagation?</h2>
+    <div class="legend-entry"><span class="param">SFI &gt; 100:</span> Great high-band conditions.</div>
+    <div class="legend-entry"><span class="param">Sunspot Number &gt; 50:</span> Active sun = more ionization.</div>
+    <div class="legend-entry"><span class="param">K-index ≤ 3:</span> Quiet geomagnetic field.</div>
+    <div class="legend-entry"><span class="param">A-index &lt; 10:</span> Low geomagnetic disturbance.</div>
+    <div class="legend-entry"><span class="param">Bz &gt; 0:</span> Shielded magnetic field.</div>
+    <div class="legend-entry"><span class="param">Solar Wind &lt; 500 km/s:</span> Low disruptions.</div>
+    <div class="legend-entry"><span class="param">X-Ray: A/B/C:</span> Normal levels.</div>
+    <div class="legend-entry"><span class="param">Proton/Electron Flux low:</span> Less polar absorption.</div>
+    <div class="legend-entry"><span class="param">Aurora low (Kp &lt; 4):</span> No polar blackouts.</div>
+    <div class="legend-entry"><span class="param">Num of Spots &gt; 3:</span> Enhanced propagation skip.</div>
+    <div class="legend-entry"><span class="param">Spot Class high:</span> Strong active region.</div>
   </div>
 
   <script>
     async function fetchPropagationData() {
       try {
-        const [kData, sfiData, swData, plasmaData, xrayData, protonData, electronData] = await Promise.all([
+        const [kData, obsData, f107Data, magData, plasmaData, xrayData, protonData, electronData, spotData] = await Promise.all([
           fetch('https://services.swpc.noaa.gov/json/planetary_k_index_1m.json').then(r => r.json()),
           fetch('https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/f107_cm_flux.json').then(r => r.json()),
           fetch('https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json').then(r => r.json()),
           fetch('https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json').then(r => r.json()),
           fetch('https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json').then(r => r.json()),
           fetch('https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json').then(r => r.json()),
-          fetch('https://services.swpc.noaa.gov/json/goes/primary/integral-electrons-1-day.json').then(r => r.json())
+          fetch('https://services.swpc.noaa.gov/json/goes/primary/integral-electrons-1-day.json').then(r => r.json()),
+          fetch('https://services.swpc.noaa.gov/json/sunspot_report.json').then(r => r.json())
         ]);
 
-        const latestK = kData[kData.length - 1].k_index;
-        const latestSFI = sfiData[sfiData.length - 1];
-        const latestMag = swData[swData.length - 1];
+        const latestK = kData[kData.length - 1].kp_index;
+        const latestObs = obsData[obsData.length - 1];
+        const latestF107 = f107Data[f107Data.length - 1];
+        const latestMag = magData[magData.length - 1];
         const latestPlasma = plasmaData[plasmaData.length - 1];
         const latestXray = xrayData[xrayData.length - 1].flux;
         const latestProton = protonData[protonData.length - 1].flux;
         const latestElectron = electronData[electronData.length - 1].flux;
+        const latestSpot = spotData[spotData.length - 1];
 
         const data = {
-          sfi: latestSFI.solar_flux,
-          sn: latestSFI.sunspot_number,
-          a: latestSFI.a_index,
+          sfi: latestF107.flux,
+          sn: latestObs.sunspot_number,
+          a: latestObs.a_index,
           k: latestK,
-          bz: parseFloat(latestMag.bz_gsm).toFixed(1),
-          bt: parseFloat(latestMag.bt).toFixed(1),
-          solarWind: parseFloat(latestPlasma.speed).toFixed(0),
+          bz: `${parseFloat(latestMag[2]).toFixed(2)} bT`,
+          bt: `${parseFloat(latestMag[1]).toFixed(2)} bT`,
+          solarWind: parseFloat(latestPlasma[2]).toFixed(2),
           xray: latestXray,
           proton: `${latestProton} pfu`,
           electron: `${latestElectron} cm²·s·sr`,
-          aurora: `Kp ${latestK}`
+          aurora: `Kp ${latestK}`,
+          region: latestSpot.Region,
+          numspot: latestSpot.Numspot,
+          spotclass: latestSpot.Spotclass,
+          zurich: latestSpot.Zurich,
+          area: latestSpot.Area,
+          magclass: latestSpot.Magclass
         };
 
         for (let key in data) {
           const el = document.getElementById(key);
           if (!el) continue;
           el.textContent = data[key];
-
-          if (key === "k" && data.k >= 5) el.className = "alert";
-          if (key === "bz" && parseFloat(data.bz) < -5) el.className = "alert";
-          if (key === "aurora" && data.k >= 5) el.className = "warning";
+          if (key === 'k' && data.k >= 5) el.className = 'alert';
+          if (key === 'bz' && parseFloat(data.bz) < -5) el.className = 'alert';
+          if (key === 'aurora' && data.k >= 5) el.className = 'warning';
         }
       } catch (err) {
-        console.error("Failed to fetch propagation data:", err);
+        console.error('Failed to fetch propagation data:', err);
       }
     }
 
