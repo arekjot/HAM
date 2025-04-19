@@ -48,8 +48,8 @@
   <!-- Core parameters -->
   <div><span class="label">SFI (F10.7cm):</span> <span id="sfi" class="data">--</span></div>
   
-  <div><span class="label">A-Index:</span> <span id="a" class="data">--</span></div>
-  <div><span class="label">K-Index:</span> <span id="k" class="data">--</span></div>
+  <div><span class="label">Planetary A-Index:</span> <span id="a" class="data">--</span></div>
+  <div><span class="label">Planetary K-Index:</span> <span id="k" class="data">--</span></div>
 
   <!-- Magnetic and solar wind -->
   <div><span class="label">Bz:</span> <span id="bz" class="data">--</span></div>
@@ -116,14 +116,13 @@
           sfi: latestF107.flux,
           sn: latestObs.sunspot_number,
           a: latestObs.a_index,
-          k: latestK,
+          k: `Kp ${latestK}`,
           bz: `${parseFloat(latestMag[2]).toFixed(2)} bT`,
           bt: `${parseFloat(latestMag[1]).toFixed(2)} bT`,
           solarWind: parseFloat(latestPlasma[2]).toFixed(2),
           xray: latestXray,
           proton: `${latestProton} pfu`,
           electron: `${latestElectron} cm²·s·sr`,
-          aurora: `Kp ${latestK}`,
           region: latestSpot.Region,
           numspot: latestSpot.Numspot,
           spotclass: latestSpot.Spotclass,
@@ -138,7 +137,7 @@
           el.textContent = data[key];
           if (key === 'k' && data.k >= 5) el.className = 'alert';
           if (key === 'bz' && parseFloat(data.bz) < -5) el.className = 'alert';
-          if (key === 'aurora' && data.k >= 5) el.className = 'warning';
+          if (key === 'k' && data.k >= 5) el.className = 'warning';
         }
       } catch (err) {
         console.error('Failed to fetch propagation data:', err);
