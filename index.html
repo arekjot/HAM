@@ -1,156 +1,177 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <title>..::SP7AJ Homepage::..</title>
-    <style>
-        body {
-            background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
-            background-color: #121212;
-            color: #00ffcc;
-            font-family: "Times New Roman", serif;
-            display: flex;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>..::SP7AJ Homepage::..</title>
+  <style>
+    body {
+      background: url('https://www.cameronsworld.net/img/content/2/bg.png') repeat;
+      background-color: #121212;
+      color: #00ffcc;
+      font-family: "Times New Roman", serif;
+      display: flex;
+    }
 
-        .sidebar {
-            width: 100px;
-            height: 100vh;
-            padding: 15px;
-            border-right: 2px solid #00ffcc;
-            position: fixed;
-            left: -200px;
-            top: 0;
-            background-color: #121212;
-            transition: left 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 50px;
-        }
+    .sidebar {
+      width: 100px;
+      height: 100vh;
+      padding: 15px;
+      border-right: 2px solid #00ffcc;
+      position: fixed;
+      left: -200px;
+      top: 0;
+      background-color: #121212;
+      transition: left 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 50px;
+    }
 
-        .sidebar a {
-            display: block;
-            color: #00ffcc;
-            text-decoration: none;
-            padding: 8px 0;
-            font-size: 16px;
-        }
+    .sidebar a {
+      display: block;
+      color: #00ffcc;
+      text-decoration: none;
+      padding: 8px 0;
+      font-size: 16px;
+    }
 
-        .sidebar a:hover {
-            text-decoration: underline;
-        }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
 
-        .menu-toggle {
-            position: fixed;
-            left: 10px;
-            top: 10px;
-            background-color: #00ffcc;
-            color: #121212;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 1000;
-        }
+    .menu-toggle {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      background-color: #00ffcc;
+      color: #121212;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1000;
+    }
 
-        .sidebar.open {
-            left: 0;
-        }
+    .sidebar.open {
+      left: 0;
+    }
 
-        .content {
-            margin-left: 20px;
-            padding: 20px;
-            text-align: center;
-            flex-grow: 1;
-            max-width: 900px;
-            margin: auto;
-        }
+    .content {
+      margin-left: 20px;
+      padding: 20px;
+      text-align: center;
+      flex-grow: 1;
+      max-width: 900px;
+      margin: auto;
+    }
 
-        h1 {
-            text-shadow: 2px 2px 4px #000;
-            color: #871A85;
-            font-size: 36px;
-        }
-    </style>
+    h1 {
+      text-shadow: 2px 2px 4px #000;
+      color: #871A85;
+      font-size: 36px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 1300px;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
-    <div class="sidebar">
-        <a href="/aboutme" onclick="navigate(event, 'aboutme.html')">About Me</a>
-        <a href="/gallery" onclick="navigate(event, 'gallery.html')">Gallery</a>
-        <a href="/propagation" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
-        <a href="/projects" onclick="navigate(event, 'projects.html')">Projects</a>
-        <a href="/hobbies" onclick="navigate(event, 'otherhobbies.html')">Other Hobbies</a>
-        <a href="/links" onclick="navigate(event, 'links.html')">Links</a>
+  <div class="sidebar">
+    <a href="/aboutme" onclick="navigate(event, 'aboutme.html')">About Me</a>
+    <a href="/gallery" onclick="navigate(event, 'gallery.html')">Gallery</a>
+    <a href="/propagation" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
+    <a href="/projects" onclick="navigate(event, 'projects.html')">Projects</a>
+    <a href="/hobbies" onclick="navigate(event, 'otherhobbies.html')">Other Hobbies</a>
+    <a href="/links" onclick="navigate(event, 'links.html')">Links</a>
+  </div>
+
+  <div class="content">
+    <img src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Planet GIF">
+    <h1>..::SP7AJ Homepage::..</h1>
+    <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
+    <div id="main-content">
+      <p>Loading...</p>
     </div>
+    <p>Any questions?</p>
+    <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
+  </div>
 
-    <div class="content">
-        <img src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Planet GIF">
-        <h1>..::SP7AJ Homepage::..</h1>
-        <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
-        <div id="main-content">
-            <!-- Tutaj będzie dynamicznie ładowana treść -->
-            <p>Loading...</p>
-        </div>
-        <p>Any questions?</p>
-        <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
-    </div>
+  <script>
+    function toggleMenu() {
+      document.querySelector(".sidebar").classList.toggle("open");
+    }
 
-    <script>
-        function toggleMenu() {
-            document.querySelector(".sidebar").classList.toggle("open");
-        }
+    function navigate(event, page) {
+      event.preventDefault();
+      const href = event.target.getAttribute('href');
 
-        function navigate(event, page) {
-            event.preventDefault();
-            loadPage(page);
-            history.pushState({page: page}, '', event.target.getAttribute('href'));
-        }
+      if (page === 'propagation_monitor.html') {
+        document.getElementById('main-content').innerHTML = `
+          <iframe src="${page}" title="HF Propagation Monitor"></iframe>
+        `;
+      } else {
+        loadPage(page);
+      }
 
-        function loadPage(page) {
-            fetch(page)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('main-content').innerHTML = data;
-                })
-                .catch(error => {
-                    document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>";
-                });
-        }
+      history.pushState({ page: page }, '', href);
+    }
 
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.page) {
-                loadPage(event.state.page);
-            }
+    function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('main-content').innerHTML = data;
+        })
+        .catch(error => {
+          document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>";
         });
+    }
 
-        // domyslna strona
-        window.addEventListener('load', function() {
-            let path = window.location.pathname;
-            switch (path) {
-                case '/gallery':
-                    loadPage('gallery.html');
-                    break;
-                case '/propagation':
-                    loadPage('propagation_monitor.html');
-                    break;
-                case '/projects':
-                    loadPage('projects.html');
-                    break;
-                case '/hobbies':
-                    loadPage('otherhobbies.html');
-                    break;
-                case '/links':
-                    loadPage('links.html');
-                    break;
-                default:
-                    loadPage('aboutme.html');
-                    break;
-            }
-        });
-    </script>
+    window.addEventListener('popstate', function(event) {
+      if (event.state && event.state.page) {
+        if (event.state.page === 'propagation_monitor.html') {
+          document.getElementById('main-content').innerHTML = `
+            <iframe src="${event.state.page}" title="HF Propagation Monitor"></iframe>
+          `;
+        } else {
+          loadPage(event.state.page);
+        }
+      }
+    });
+
+    window.addEventListener('load', function() {
+      let path = window.location.pathname;
+      switch (path) {
+        case '/gallery':
+          loadPage('gallery.html');
+          break;
+        case '/propagation':
+          document.getElementById('main-content').innerHTML = `
+            <iframe src="propagation_monitor.html" title="HF Propagation Monitor"></iframe>
+          `;
+          break;
+        case '/projects':
+          loadPage('projects.html');
+          break;
+        case '/hobbies':
+          loadPage('otherhobbies.html');
+          break;
+        case '/links':
+          loadPage('links.html');
+          break;
+        default:
+          loadPage('aboutme.html');
+          break;
+      }
+    });
+  </script>
 </body>
 </html>
