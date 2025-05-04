@@ -63,7 +63,7 @@
       if (val < 1e-4) return `M (${val.toExponential(1)})`;
       return `X (${val.toExponential(1)})`;
     }
-    
+
     async function fetchPropagationData() {
       try {
         const [kData, sfiData, magData, plasmaData, xrayData, protonData, electronData, spotData] = await Promise.all([
@@ -96,12 +96,12 @@
           area: latestSpot.Area,
           k: `Kp ${latestK}`,
           a: latestSFI.aindex ?? '--',
-          bz: parseFloat(latestMag[3]).toFixed(2),
+          bz: parseFloat(latestMag[2]).toFixed(2),
           bt: parseFloat(latestMag[6]).toFixed(2),
           solarWind: `${parseFloat(latestPlasma[2]).toFixed(0)} km/sec`,
-          xray: classifyXRay(latestXray.flux),
-          proton: `${latestProton.flux} pfu`,
-          electron: `${latestElectron.flux} cm²·s·sr`,
+          xray: latestXray?.flux ? classifyXRay(latestXray.flux) : '--',
+          proton: `${latestProton?.flux ?? '--'} pfu`,
+          electron: `${latestElectron?.flux ?? '--'} cm²·s·sr`,
           aurora: `Kp ${latestK}`
         };
 
@@ -109,15 +109,21 @@
           const el = document.getElementById(key);
           if (!el) continue;
           el.textContent = val;
-          if (key === 'k' && data.k >= 5) el.className = 'alert';
+
+          // Apply color classes conditionally
+          if (key === 'k' || key === 'aurora') {
+            const kpVal = parseFloat(data.k.replace('Kp ', ''));
+            if (key === 'k' && kpVal >= 5) el.className = 'alert';
+            if (key === 'aurora' && kpVal >= 5) el.className = 'warning';
+          }
+
           if (key === 'bz' && parseFloat(data.bz) < -5) el.className = 'alert';
-          if (key === 'aurora' && data.k >= 5) el.className = 'warning';
         }
       } catch (err) {
         console.error('Failed to fetch propagation data:', err);
       }
     }
-    
+
     fetchPropagationData();
     setInterval(fetchPropagationData, 3600000);
   </script>
