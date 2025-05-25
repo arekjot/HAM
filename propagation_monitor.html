@@ -38,21 +38,35 @@
   <div><span class="label">Aurora Activity:</span> <span id="aurora" class="data">--</span></div>
 
   <div class="legend">
-    <h2>📘 Legend</h2>
-    <div class="legend-entry"><span class="param">SFI > 100:</span> Boosts F-layer ionization—great for 15m–10m.</div>
-    <div class="legend-entry"><span class="param">Sunspot Number > 50:</span> More sunspots = stronger HF skip.</div>
-    <div class="legend-entry"><span class="param">K-index ≤ 3:</span> Quiet geomagnetic field.</div>
-    <div class="legend-entry"><span class="param">A-index < 10:</span> Stable conditions over 24h (not yet available)</div>
-    <div class="legend-entry"><span class="param">Bz > 0 nT:</span> Northward IMF—calm space weather.</div>
-    <div class="legend-entry"><span class="param">Bt moderate:</span> <10 nT normal; high + Bz<0 = storms.</div>
-    <div class="legend-entry"><span class="param">Solar Wind < 500 km/s:</span> Low disruptions.</div>
-    <div class="legend-entry"><span class="param">X-Ray Flux (A/B/C):</span> Minor. M/X flares can cause severe blackouts on HF.</div>
-    <div class="legend-entry"><span class="param">Proton Flux:</span> >10 pfu can cause polar absorption.</div>
-    <div class="legend-entry"><span class="param">Electron Flux:</span> High = increased HF noise.</div>
-    <div class="legend-entry"><span class="param">Aurora (Kp≥4):</span> Indicates polar absorption risk.</div>
-    <div class="legend-entry"><span class="param"># of Spots > 5:</span> Very active region.</div>
-    <div class="legend-entry"><span class="param">Spot/Mag Class:</span> Higher classes often mean complex regions and stronger effects.</div>
-  </div>
+  <h2>📘 Legend – Interpreting Solar & Geomagnetic Data</h2>
+
+  <div class="legend-entry"><span class="param">SFI (Solar Flux Index):</span> >150 = excellent for 10m–15m; 100–150 = good conditions; <100 = weaker upper-band propagation.</div>
+
+  <div class="legend-entry"><span class="param">Sunspot Number:</span> >50 = strong HF activity; 10–50 = moderate; <10 = weak propagation potential.</div>
+
+  <div class="legend-entry"><span class="param">K-index (Kp):</span> 0–2 = ideal HF conditions; 3–4 = mild disturbances; ≥5 = possible HF blackouts.</div>
+
+  <div class="legend-entry"><span class="param">A-index:</span> <10 = stable ionosphere; >15 = disturbed conditions; measures 24h geomagnetic stability.</div>
+
+  <div class="legend-entry"><span class="param">Bz (IMF North-South):</span> >0 nT = calm space weather; <0 nT = higher storm potential.</div>
+
+  <div class="legend-entry"><span class="param">Bt (Total IMF Strength):</span> <10 nT = normal; >10 nT + Bz < 0 = storm risk increases.</div>
+
+  <div class="legend-entry"><span class="param">Solar Wind Speed:</span> <400 km/s = quiet; 400–600 km/s = moderate; >600 km/s = HF disruption likely.</div>
+
+  <div class="legend-entry"><span class="param">X-Ray Flux:</span> A/B/C = low impact; M-class = shortwave fadeouts; X-class = strong HF blackouts.</div>
+
+  <div class="legend-entry"><span class="param">Proton Flux:</span> >10 pfu = polar absorption events possible; <10 pfu = normal.</div>
+
+  <div class="legend-entry"><span class="param">Electron Flux:</span> High values raise HF background noise, especially on higher bands.</div>
+
+  <div class="legend-entry"><span class="param">Auroral Activity (Kp):</span> Kp ≥4 = auroral absorption risk on polar paths; Kp ≤2 = quiet and stable.</div>
+
+  <div class="legend-entry"><span class="param">Sunspot Region (# of Spots):</span> >5 spots = active region, may produce flares or CMEs.</div>
+
+  <div class="legend-entry"><span class="param">Spot/Magnetic Class:</span> Complex classes (e.g., Beta-Gamma-Delta) = increased flare risk; simpler classes are more stable.</div>
+</div>
+
 
   <script>
     function classifyXRay(flux) {
