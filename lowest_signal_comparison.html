@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<title>Porównanie sygnałów z FT8 - ciemny retro motyw</title>
+<style>
+  body {
+    background-color: #0a0a0a;
+    color: #33ff33;
+    font-family: "Courier New", Courier, monospace;
+    padding: 20px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px #33ff33;
+  }
+  thead tr {
+    background-color: #003300;
+    color: #00ff00;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  th, td {
+    border: 1px solid #00ff00;
+    padding: 12px 15px;
+    text-align: center;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #001a00;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #002800;
+  }
+  tbody tr:hover {
+    background-color: #004d00;
+    cursor: default;
+  }
+  caption {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #33ff33;
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <caption>Porównanie najsłabszych sygnałów możliwych do odebrania (w tym FT8)</caption>
+  <thead>
+    <tr>
+      <th>Poziom sygnału [dBm]</th>
+      <th>SNR [dB]</th>
+      <th>SINAD [dB]</th>
+      <th>S-meter (IARU)</th>
+      <th>Opis słyszalności</th>
+      <th>Typowe zastosowanie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-140 dBm</td>
+      <td>~ -20 dB</td>
+      <td>---</td>
+      <td>Brak wskazania (poniżej S1)</td>
+      <td>Bardzo słaby sygnał cyfrowy, dekodowany przez FT8 mimo bardzo niskiego SNR</td>
+      <td>FT8, tryb cyfrowy o wyjątkowej czułości</td>
+    </tr>
+    <tr>
+      <td>-135 dBm</td>
+      <td>~0 dB</td>
+      <td>~6 dB</td>
+      <td>Brak wskazania (poniżej S1)</td>
+      <td>Ledwo słyszalny sygnał CW, wymaga filtrów i skupienia</td>
+      <td>DX CW, QRP, EME</td>
+    </tr>
+    <tr>
+      <td>-125 dBm</td>
+      <td>3–5 dB</td>
+      <td>8–10 dB</td>
+      <td>S1</td>
+      <td>Bardzo słaby sygnał, możliwy do zdekodowania (CW/SSB)</td>
+      <td>DX SSB, SDR z AGC</td>
+    </tr>
+    <tr>
+      <td>-115 dBm</td>
+      <td>8–10 dB</td>
+      <td>12–15 dB</td>
+      <td>S3</td>
+      <td>Słaby, ale czytelny sygnał SSB, QSO możliwe</td>
+      <td>QRP SSB, SOTA, wyprawy</td>
+    </tr>
+    <tr>
+      <td>-105 dBm</td>
+      <td>15–20 dB</td>
+      <td>18–20 dB</td>
+      <td>S5</td>
+      <td>Czytelny sygnał, komfortowy odsłuch</td>
+      <td>Typowy odbiór HF, VHF</td>
+    </tr>
+    <tr>
+      <td>-95 dBm</td>
+      <td>25–30 dB</td>
+      <td>>25 dB</td>
+      <td>S7–S8</td>
+      <td>Bardzo dobry sygnał, wysoka jakość audio</td>
+      <td>Local FM/SSB, broadcast AM</td>
+    </tr>
+    <tr>
+      <td>-85 dBm</td>
+      <td>>35 dB</td>
+      <td>>30 dB</td>
+      <td>S9</td>
+      <td>Mocny sygnał, pełna zrozumiałość</td>
+      <td>Local QSO, krótkie dystanse</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
