@@ -62,7 +62,7 @@
     <p>Loading...</p>
   </div>
 
-  <div class="marquee"><span>--- Welcome to SP7AJ Retro Web ---</span></div>
+  <div class="marquee"><span> Welcome to SP7AJ Retro Web </span></div>
 
   <script>
     function navigate(event, page){
@@ -82,7 +82,7 @@
       const hash = window.location.hash || '#aboutme';
       switch(hash){
         case '#gallery': navigate(new Event('click'), 'gallery.html'); break;
-        case '#propagation': navigate(new Event('click'), 'propagation_monitor.html'); break;
+        case '#propagation guide ': navigate(new Event('click'), 'propagation_guide.html'); break;
         case '#projects': navigate(new Event('click'), 'projects.html'); break;
         case '#links': navigate(new Event('click'), 'links.html'); break;
         default: navigate(new Event('click'), 'aboutme.html'); break;
