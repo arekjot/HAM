@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ham Radio Propagation Indices - Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    :root{
+      --bg:#0b0b12;
+      --panel:#0f1724;
+      --accent:#00ffcc;
+      --muted:#9aa3b2;
+      --neon:#ff66cc;
+      --window:#071021;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: 'VT323', "Courier New", monospace;
+      background:linear-gradient(180deg,var(--bg),#06060b 60%);
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      padding:24px;
+    }
+    .container{max-width:980px;margin:0 auto;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:18px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.8);}
+    header{display:flex;align-items:center;gap:12px;border-bottom:1px dashed rgba(255,255,255,0.04);padding-bottom:10px;margin-bottom:14px}
+    .logo{width:56px;height:56px;background:linear-gradient(135deg,var(--neon),var(--accent));border-radius:6px;display:flex;align-items:center;justify-content:center;color:#071021;font-weight:700}
+    h1{font-size:34px;margin:0;color:var(--accent);}
+    p.lead{color:var(--muted);margin:6px 0 0 0}
+
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:4px}
+    h2{margin:6px 0 8px 0;color:var(--neon);}
+    table{width:100%;border-collapse:collapse;color:var(--accent);font-size:16px}
+    table th, table td{padding:6px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:left;color:var(--accent)}
+    .muted{color:var(--muted);font-size:14px}
+    pre{background:var(--window);padding:10px;border-radius:4px;color:var(--accent);overflow:auto;border:1px solid rgba(255,255,255,0.02)}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:12px;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+
+    /* Retro accents */
+    .marquee{width:100%;overflow:hidden;white-space:nowrap;border-top:1px dashed rgba(255,255,255,0.02);border-bottom:1px dashed rgba(255,255,255,0.02);padding:6px 0;margin:12px 0}
+    .marquee span{display:inline-block;padding-left:100%;animation:scroll 18s linear infinite;color:var(--neon)}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)} }
+
+    /* responsive */
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">SFI</div>
+      <div>
+        <h1>Ham Radio Propagation Indices Guide</h1>
+        <p class="lead">A reference for all misterious numbers and figures behind propagation monitors.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main class="card">
+        <section>
+          <h2>A Index [LOW is GOOD]</h2>
+          <table>
+            <tr><th>Range</th><th>Meaning</th></tr>
+            <tr><td>1–6</td><td class="muted">Best</td></tr>
+            <tr><td>7–9</td><td class="muted">OK</td></tr>
+            <tr><td>11+</td><td class="muted">Not very good</td></tr>
+          </table>
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>K Index [LOW is GOOD]</h2>
+          <table>
+            <tr><th>K</th><th>Description</th></tr>
+            <tr><td>0–1</td><td class="muted">Best</td></tr>
+            <tr><td>2</td><td class="muted">OK</td></tr>
+            <tr><td>3+</td><td class="muted">Not very good</td></tr>
+            <tr><td>5</td><td class="muted">Really terrible</td></tr>
+          </table>
+
+          <p class="small">K values are per 3-hour block (0–9). K ≤ 2 favors HF; higher K encourages auroral VHF propagation but increases HF absorption.</p>
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>SFI (Solar Flux Index) [HIGH is GOOD]</h2>
+          <table>
+            <tr><th>SFI</th><th>Note</th></tr>
+            <tr><td>70</td><td class="muted">Not good</td></tr>
+            <tr><td>80</td><td class="muted">Good</td></tr>
+            <tr><td>90</td><td class="muted">Better</td></tr>
+            <tr><td>100+</td><td class="muted">Best</td></tr>
+          </table>
+          <p class="small">SFI measured in SFU at 2800 MHz (2.8 GHz). High SFI (sustained for days) opens upper HF bands (24, 28 MHz).</p>
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>A and K Indices</h2>
+          <p class="small">In reference to the solar cycle, numbers are given in “smoothed” form, i.e. monthly averages rather than daily values. Smoothed data gives more accurate results because solar activity changes daily. A and K indices are measurements of the Earth’s magnetic field activity and are used in forecasts. The K index is a measurement of magnetic activity compared to a “quiet” day, taken at different locations. Scale from 0 to 9. The K index is the average of these readings.</p>
+
+          <table>
+            <tr><td>0</td><td class="muted">Inactive</td></tr>
+            <tr><td>1</td><td class="muted">Very quiet</td></tr>
+            <tr><td>2</td><td class="muted">Quiet</td></tr>
+            <tr><td>3</td><td class="muted">Unsettled</td></tr>
+            <tr><td>4</td><td class="muted">Active</td></tr>
+            <tr><td>5</td><td class="muted">Minor storm</td></tr>
+            <tr><td>6</td><td class="muted">Major storm</td></tr>
+            <tr><td>7</td><td class="muted">Severe storm</td></tr>
+            <tr><td>8</td><td class="muted">Very severe storm</td></tr>
+            <tr><td>9</td><td class="muted">Extreme storm</td></tr>
+          </table>
+          <p class="small">The A index relates to geomagnetic stability and is calculated from the previous day’s K indices.</p>
+
+          <table>
+           <tr><td>A = 0-7</td><td class="muted">Quiet</td></tr>
+            <tr><td>A = 8-15</td><td class="muted">Unstable</td></tr>
+            <tr><td>A = 16-29</td><td class="muted">Active</td></tr>
+            <tr><td>A = 30-49</td><td class="muted">Minor storm</td></tr>
+            <tr><td>A = 50-99</td><td class="muted">Major storm</td></tr>
+            <tr><td>A = 100-400</td><td class="muted">Severe storm</td></tr>
+          </table>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Quick example of A and K numbers</h2>
+          <p class="muted">If we expect excellent HF conditions, low A and K indices for a few days along with high SFI (above 250) would suggest great conditions. They may be disturbed by random solar phenomena, but generally, this setup is very good for HF.
+
+For the lower HF bands, low A and K with a very low SFI may be preferable. <br>In practice, good propagation usually happens when:</p>
+
+        <table>
+           <tr><td>A Index ≤ 10,</td><td class="muted"></td></tr>
+            <tr><td>K index ≤ 3,</td><td class="muted"></td></tr>
+            <tr><td>SFI ≥ 90.</td><td class="muted"></td></tr>
+        </table>
+
+        <p class="muted">Still, many radio amateurs (often with compromised antennas and low power) have worked great DX, added new DXCC entities to their logs, and had lots of fun even when numbers were “terrible” at the bottom of the solar cycle. Don’t let numbers stop you from turning on the radio – the bands can surprise you even when forecasts look dead.</p>
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Definitions and explanations</h2>
+          <p class="muted">SFI = Solar Flux Index <br>
+Solar flux is a measure of solar activity affecting Earth. It is measured as the “noise” received at 2.8 GHz. Range 50–300. Above 150, HF conditions improve and upper bands (24 and 28 MHz) tend to open up. High SFI values need to persist for several days for the effect to be noticeable.<br>
+SN = Sun Spot Number <br>
+Range 0–300. Above 100 HF conditions improve, above 150 higher HF bands (24, 28 MHz, and 50 MHz) open up. More than 200 sunspots is rare – if it happens, turn on your radio immediately.<br>
+A Index<br>
+24-hour average of eight 3-hourly geomagnetic activity measurements. Range 0–40 (10 is already high).<br>
+K Index<br>
+Geomagnetic activity over 3 hours compared to quiet conditions, scale 0–9. K ≤ 2 favors HF propagation, while high K values create auroral propagation on VHF at the cost of HF absorption.</p>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>X-Rays (Flare Classes)</h2>
+          <p class="small">Solar X-ray emissions are classified into 5 increasing categories: A > B > C > M > X.
+Based on power density (W/m²).</p>
+          <table>
+            <tr><th>Class</th><th>Effect on HF</th></tr>
+            <tr><td>A1–B9</td><td class="muted">No or very little impact</td></tr>
+            <tr><td>C1</td><td class="muted">Weak HF absorption</td></tr>
+            <tr><td>M1</td><td class="muted">Some radio blackouts on sunlit side</td></tr>
+            <tr><td>M5</td><td class="muted">Short HF fadeouts (~10 min)</td></tr>
+            <tr><td>X1</td><td class="muted">Large HF blackout up to ~1 hour</td></tr>
+            <tr><td>X10</td><td class="muted">Blackout on most sunlit side for 1–2 hours</td></tr>
+            <tr><td>X20</td><td class="muted">Extensive blackout for hours</td></tr>
+          </table>
+
+          <p class="small">If there is a major solar flare and X-ray energy increases, A and K indices will likely rise.</p>
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Protons &amp; Electrons</h2>
+          <p class="small"><strong>Ptn Flx:</strong>Density of charged protons in the solar wind. Measured in MeV or particles/cm². Range not precisely defined, goes from 0 up to unknown maximum. The higher the number, the greater the impact on the ionosphere, mainly affecting the E layer. Updated hourly.</p>
+
+          <p class="small"><strong>Elc Flx:</strong> electron flux levels and typical impacts:</p>
+          <pre> &lt;1.0e+00 = Normal (no HF impact)
+ &lt;1.0e+01 = Normal (no HF impact)
+ &lt;1.0e+02 = Active (minor polar HF impact)
+ &lt;1.0e+03 = Active (HF degradation in polar regions)
+ &gt;1.0e+03 = Alert (partial/full HF blackout in polar regions)
+</pre>
+
+          <p class="muted small">The effects of proton and electron flux are quite complex, depending on many parameters, but in short:<br> </p>
+
+          <ul class="small muted">
+            <li>Low levels of protons, when the geomagnetic field is quiet, help to “recharge” the ionosphere, improving nighttime propagation on 160–40m, where protons are the main source of ionization in the E layer (and to a lesser extent, F2).</li>
+            <li>Too many protons (above about 1.0e+01) can cause unstable F2 propagation, especially across polar paths.</li>
+            <li>Coronal mass ejections (CMEs) accelerate many protons ahead of the plasma cloud itself. These protons can reach Earth within hours of the flare, often causing polar cap absorption (PCA) events, which lead to “watery” audio on SSB signals crossing polar paths, especially on the sunlit side.</li>
+            <li>Low-frequency bands (80m, 40m) often experience high noise levels.</li>
+          </ul>
+
+          <p class="muted small">After a proton event and the CME itself (which causes large magnetic field fluctuations and very unstable conditions), the next wave is electrons. These may last hours to days.
+When electron flux rises above about 1.0e+03 and the Bz component is strongly negative, solar electrons tend to replace protons and other ions in the ionosphere, leading to unusual but sometimes improved propagation.<br> In these “F3 layer ionization” conditions:<br> </p>
+
+          <ul class="small muted">
+            <li>10m through 30m may open across the sunlit half of the globe, sometimes staying open several hours after sunset.</li>
+            <li>30m and 20m may remain open all night.</li>
+            <li>North–south (trans-equatorial) paths become particularly strong.</li>
+            <li>At the same time, 40m and 80m suffer from weak signals, rapid deep QSB, and heavy “frying pan” noise (up to S6+).</li>
+            <li>6m and 10m trans-equatorial openings often occur thanks to F3 layer ionization.</li>
+          </ul>
+
+          <p class="muted small">Such conditions are often accompanied by polar absorption events if electron flux is high enough. These “electron storms” often follow CMEs, so keep an eye on space weather reports: several days after a CME, when electron flux rises, check the bands for unusual openings — you might be the only one working rare DX!<br> </p>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Aurora</h2>
+          <p class="small">Solar wind particles trapped in Earth’s magnetic field produce aurora when they enter the atmosphere near the poles. This is plasma glowing about 100 km above Earth.</p>
+
+          <ul class="small muted">
+            <li>The first number is an index: 1 = 10 gigawatts, 10 = 100 gigawatts (logarithmic growth).</li>
+            <li>The second number, n=, is a confidence index (1–5). Values above 2 suggest caution when trusting the data.</li>
+          </ul>
+
+          <p class="small">Measurements come from the POES satellite in low Earth polar orbit, which can only measure every 90 minutes, adding uncertainty.<br>
+The stronger the auroral index, the more likely long-path openings on higher HF frequencies.</p>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Aur Lat</h2>
+          <p class="small">Shows the minimum latitude of current auroral activity. Usually between 30° and 60°N.</p>
+
+          <ul class="small muted">
+            <li>Strongly negative Bz weakens Earth’s magnetic protection, allowing more solar particles into the ionosphere.</li>
+            <li>When Bz points south, geomagnetic disturbances are more likely, raising the A index.</li>
+          </ul>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Mag Bz</h2>
+          <p class="small">The Bz component is the strength and direction of the interplanetary magnetic field (IMF). It varies between positive (same polarity as Earth’s field) and negative (opposite).</p>
+
+          <ul class="small muted">
+            <li>Strongly negative Bz weakens Earth’s magnetic protection, allowing more solar particles into the ionosphere.</li>
+            <li>When Bz points south, geomagnetic disturbances are more likely, raising the A index.</li>
+          </ul>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>SW = Solar Wind</h2>
+          <p class="small">Solar wind speed in km/s, typically 400–800 km/s. Proportional to the plasma flow.</p>
+
+          <ul class="small muted">
+            <li>Higher speeds = more pressure on the ionosphere.</li>
+            <li>Very strong solar wind can “blow away” the ionosphere, causing HF fadeouts or blackouts, especially on higher bands during the day.</li>
+            <li>At night, however, high solar wind can sometimes improve propagation on 80m and 60m.</li>
+          </ul>
+
+        </section>
+
+        <section style="margin-top:12px">
+          <h2>Practical notes</h2>
+          <ul class="small muted">
+            <li>Watch for sustained high SFI for several days before expecting stable HF improvements.</li>
+            <li>CMEs may cause proton events &amp; polar cap absorption—expect noisy polar paths.</li>
+            <li>Electron storms can produce rare, strong openings on higher HF bands and 6m trans-equatorial paths.</li>
+            <li>Never let the numbers stop you — the bands often surprise!</li>
+          </ul>
+        </section>
+
+      </main>
+
+      <aside class="card">
+        <h2>Quick cheat sheet</h2>
+        <table>
+          <tr><th>Metric</th><th>Good</th></tr>
+          <tr><td>A index</td><td class="muted">≤ 10</td></tr>
+          <tr><td>K index</td><td class="muted">≤ 3</td></tr>
+          <tr><td>SFI</td><td class="muted">≥ 90</td></tr>
+          <tr><td>SN (sunspots)</td><td class="muted">≥ 100 (better above 150)</td></tr>
+        </table>
+
+        <h2 style="margin-top:12px">Legend</h2>
+        <p class="small muted"><strong>SFI</strong> — Solar Flux Index (SFU at 2.8 GHz)<br>
+        <strong>SN</strong> — Sunspot Number<br>
+        <strong>A / K</strong> — Geomagnetic indices (daily / 3-hour)
+        </p>
+
+        <footer>
+          <div class="small muted">de SP7AJ, dit dit</div>
+        </footer>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
