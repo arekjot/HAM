@@ -13,11 +13,9 @@
       font-family: "Times New Roman", serif;
       display: flex;
     }
-
     .sidebar {
       width: 100px;
       height: 100vh;
-      padding: 15px;
       border-right: 2px solid #00ffcc;
       position: fixed;
       left: -200px;
@@ -29,7 +27,6 @@
       justify-content: flex-start;
       padding-top: 50px;
     }
-
     .sidebar a {
       display: block;
       color: #00ffcc;
@@ -37,11 +34,7 @@
       padding: 8px 0;
       font-size: 16px;
     }
-
-    .sidebar a:hover {
-      text-decoration: underline;
-    }
-
+    .sidebar a:hover { text-decoration: underline; }
     .menu-toggle {
       position: fixed;
       left: 10px;
@@ -54,11 +47,7 @@
       font-size: 16px;
       z-index: 1000;
     }
-
-    .sidebar.open {
-      left: 0;
-    }
-
+    .sidebar.open { left: 0; }
     .content {
       margin-left: 20px;
       padding: 20px;
@@ -67,18 +56,8 @@
       max-width: 900px;
       margin: auto;
     }
-
-    h1 {
-      text-shadow: 2px 2px 4px #000;
-      color: #871A85;
-      font-size: 36px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 1300px;
-      border: none;
-    }
+    h1 { text-shadow: 2px 2px 4px #000; color: #871A85; font-size: 36px; }
+    iframe { width: 100%; height: 1300px; border: none; }
   </style>
 </head>
 <body>
@@ -87,9 +66,9 @@
   <div class="sidebar">
     <a href="/aboutme" onclick="navigate(event, 'aboutme.html')">About Me</a>
     <a href="/gallery" onclick="navigate(event, 'gallery.html')">Gallery</a>
-    <a href="/propagation monitor" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
-    <a href="/propagation guide" onclick="navigate(event, 'propagation_guide.html')">Propagation Guide</a>
-    <a href="/lowest sig" onclick="navigate(event, 'lowest_signal_comparison.html')">Lowest Signal Comparison</a>
+    <a href="/propagation_monitor" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
+    <a href="/propagation_guide" onclick="navigate(event, 'propagation_guide.html')">Propagation Guide</a>
+    <a href="/lowest_signal" onclick="navigate(event, 'lowest_signal_comparison.html')">Lowest Signal Comparison</a>
     <a href="/projects" onclick="navigate(event, 'projects.html')">Projects</a>
     <a href="/hobbies" onclick="navigate(event, 'otherhobbies.html')">Other Hobbies</a>
     <a href="/links" onclick="navigate(event, 'links.html')">Links</a>
@@ -99,9 +78,7 @@
     <img src="https://www.cameronsworld.net/img/content/1/20.gif" alt="Planet GIF">
     <h1>..::SP7AJ Homepage::..</h1>
     <img src="https://www.cameronsworld.net/img/content/2/19.gif" alt="Shuttle GIF">
-    <div id="main-content">
-      <p>Loading...</p>
-    </div>
+    <div id="main-content"><p>Loading...</p></div>
     <p>Any questions?</p>
     <p><a href="mailto:arek@sp7aj.com">EMAIL ME</a></p>
   </div>
@@ -116,9 +93,7 @@
       const href = event.target.getAttribute('href');
 
       if (page === 'propagation_monitor.html') {
-        document.getElementById('main-content').innerHTML = `
-          <iframe src="${page}" title="HF Propagation Monitor"></iframe>
-        `;
+        document.getElementById('main-content').innerHTML = `<iframe src="${page}" title="HF Propagation Monitor"></iframe>`;
       } else {
         loadPage(page);
       }
@@ -129,20 +104,14 @@
     function loadPage(page) {
       fetch(page)
         .then(response => response.text())
-        .then(data => {
-          document.getElementById('main-content').innerHTML = data;
-        })
-        .catch(error => {
-          document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>";
-        });
+        .then(data => { document.getElementById('main-content').innerHTML = data; })
+        .catch(error => { document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>"; });
     }
 
     window.addEventListener('popstate', function(event) {
       if (event.state && event.state.page) {
         if (event.state.page === 'propagation_monitor.html') {
-          document.getElementById('main-content').innerHTML = `
-            <iframe src="${event.state.page}" title="HF Propagation Monitor"></iframe>
-          `;
+          document.getElementById('main-content').innerHTML = `<iframe src="${event.state.page}" title="HF Propagation Monitor"></iframe>`;
         } else {
           loadPage(event.state.page);
         }
@@ -151,27 +120,15 @@
 
     window.addEventListener('load', function() {
       let path = window.location.pathname;
-      switch (path) {
-        case '/gallery':
-          loadPage('gallery.html');
-          break;
-        case '/propagation':
-          document.getElementById('main-content').innerHTML = `
-            <iframe src="propagation_monitor.html" title="HF Propagation Monitor"></iframe>
-          `;
-          break;
-        case '/projects':
-          loadPage('projects.html');
-          break;
-        case '/hobbies':
-          loadPage('otherhobbies.html');
-          break;
-        case '/links':
-          loadPage('links.html');
-          break;
-        default:
-          loadPage('aboutme.html');
-          break;
+      switch(path) {
+        case '/gallery': loadPage('gallery.html'); break;
+        case '/propagation_monitor': document.getElementById('main-content').innerHTML = `<iframe src="propagation_monitor.html" title="HF Propagation Monitor"></iframe>`; break;
+        case '/propagation_guide': loadPage('propagation_guide.html'); break;
+        case '/lowest_signal': loadPage('lowest_signal_comparison.html'); break;
+        case '/projects': loadPage('projects.html'); break;
+        case '/hobbies': loadPage('otherhobbies.html'); break;
+        case '/links': loadPage('links.html'); break;
+        default: loadPage('aboutme.html'); break;
       }
     });
   </script>
