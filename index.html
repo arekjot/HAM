@@ -62,13 +62,13 @@
     <p>Loading...</p>
   </div>
 
-  <div class="marquee"><span> Welcome to SP7AJ Retro Web </span></div>
+  <div class="marquee"><span> Welcome to SP7AJ Retro Page </span></div>
 
   <script>
     function navigate(event, page){
       event.preventDefault();
-      if(page === 'propagation_monitor.html'){
-        document.getElementById('main-content').innerHTML = `<iframe src="${page}" title="HF Propagation Monitor"></iframe>`;
+      if(page === 'propagation_guide.html'){
+        document.getElementById('main-content').innerHTML = `<iframe src="${page}" title="HF Propagation Guide"></iframe>`;
       } else {
         fetch(page)
           .then(resp=>resp.text())
