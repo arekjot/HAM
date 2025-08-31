@@ -64,14 +64,14 @@
   <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
   <div class="sidebar">
-    <a href="/aboutme" onclick="navigate(event, 'aboutme.html')">About Me</a>
-    <a href="/gallery" onclick="navigate(event, 'gallery.html')">Gallery</a>
-    <a href="/propagation_monitor" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
-    <a href="/propagation_guide" onclick="navigate(event, 'propagation_guide.html')">Propagation Guide</a>
-    <a href="/lowest_signal" onclick="navigate(event, 'lowest_signal_comparison.html')">Lowest Signal Comparison</a>
-    <a href="/projects" onclick="navigate(event, 'projects.html')">Projects</a>
-    <a href="/hobbies" onclick="navigate(event, 'otherhobbies.html')">Other Hobbies</a>
-    <a href="/links" onclick="navigate(event, 'links.html')">Links</a>
+    <a href="#aboutme" onclick="navigate(event, 'aboutme.html')">About Me</a>
+    <a href="#gallery" onclick="navigate(event, 'gallery.html')">Gallery</a>
+    <a href="#propagation_monitor" onclick="navigate(event, 'propagation_monitor.html')">Propagation Monitor</a>
+    <a href="#propagation_guide" onclick="navigate(event, 'propagation_guide.html')">Propagation Guide</a>
+    <a href="#lowest_signal" onclick="navigate(event, 'lowest_signal_comparison.html')">Lowest Signal Comparison</a>
+    <a href="#projects" onclick="navigate(event, 'projects.html')">Projects</a>
+    <a href="#hobbies" onclick="navigate(event, 'otherhobbies.html')">Other Hobbies</a>
+    <a href="#links" onclick="navigate(event, 'links.html')">Links</a>
   </div>
 
   <div class="content">
@@ -90,47 +90,38 @@
 
     function navigate(event, page) {
       event.preventDefault();
-      const href = event.target.getAttribute('href');
-
+      const hash = event.target.getAttribute('href');
       if (page === 'propagation_monitor.html') {
         document.getElementById('main-content').innerHTML = `<iframe src="${page}" title="HF Propagation Monitor"></iframe>`;
       } else {
         loadPage(page);
       }
-
-      history.pushState({ page: page }, '', href);
+      window.location.hash = hash;
     }
 
     function loadPage(page) {
       fetch(page)
         .then(response => response.text())
         .then(data => { document.getElementById('main-content').innerHTML = data; })
-        .catch(error => { document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>"; });
+        .catch(() => { document.getElementById('main-content').innerHTML = "<p>Error loading page.</p>"; });
     }
 
-    window.addEventListener('popstate', function(event) {
-      if (event.state && event.state.page) {
-        if (event.state.page === 'propagation_monitor.html') {
-          document.getElementById('main-content').innerHTML = `<iframe src="${event.state.page}" title="HF Propagation Monitor"></iframe>`;
-        } else {
-          loadPage(event.state.page);
-        }
-      }
-    });
-
-    window.addEventListener('load', function() {
-      let path = window.location.pathname;
-      switch(path) {
-        case '/gallery': loadPage('gallery.html'); break;
-        case '/propagation_monitor': document.getElementById('main-content').innerHTML = `<iframe src="propagation_monitor.html" title="HF Propagation Monitor"></iframe>`; break;
-        case '/propagation_guide': loadPage('propagation_guide.html'); break;
-        case '/lowest_signal': loadPage('lowest_signal_comparison.html'); break;
-        case '/projects': loadPage('projects.html'); break;
-        case '/hobbies': loadPage('otherhobbies.html'); break;
-        case '/links': loadPage('links.html'); break;
+    function loadFromHash() {
+      const hash = window.location.hash || '#aboutme';
+      switch(hash) {
+        case '#gallery': loadPage('gallery.html'); break;
+        case '#propagation_monitor': document.getElementById('main-content').innerHTML = `<iframe src="propagation_monitor.html" title="HF Propagation Monitor"></iframe>`; break;
+        case '#propagation_guide': loadPage('propagation_guide.html'); break;
+        case '#lowest_signal': loadPage('lowest_signal_comparison.html'); break;
+        case '#projects': loadPage('projects.html'); break;
+        case '#hobbies': loadPage('otherhobbies.html'); break;
+        case '#links': loadPage('links.html'); break;
         default: loadPage('aboutme.html'); break;
       }
-    });
+    }
+
+    window.addEventListener('hashchange', loadFromHash);
+    window.addEventListener('load', loadFromHash);
   </script>
 </body>
 </html>
