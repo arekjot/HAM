@@ -52,7 +52,7 @@
   <div class="menu">
     <a href="#aboutme" onclick="navigate('aboutme.html','#aboutme')">About Me</a>
     <a href="#gallery" onclick="navigate('gallery.html','#gallery')">Gallery</a>
-    <a href="#propagation_guide" onclick="navigate('propagation_guide.html','#propagation_guide')">Propagation Guide</a>
+    <a href="#propagationguide" onclick="navigate('propagationguide.html','#propagationguide')">Propagation Guide</a>
     <a href="#projects" onclick="navigate('projects.html','#projects')">Projects</a>
     <a href="#links" onclick="navigate('links.html','#links')">Links</a>
   </div>
@@ -65,7 +65,7 @@
 
   <script>
     function navigate(page, hash){
-      if(page === 'propagation_guide.html'){
+      if(page === 'propagationguide.html'){
         document.getElementById('main-content').innerHTML = `<iframe src="${page}" title="HF Propagation Guide"></iframe>`;
       } else {
         fetch(page)
@@ -82,7 +82,7 @@
       switch(hash){
         case '#aboutme': navigate('aboutme.html','#aboutme'); break;
         case '#gallery': navigate('gallery.html','#gallery'); break;
-        case '#propagation_guide': navigate('propagation_guide.html','#propagation_guide'); break;
+        case '#propagationguide': navigate('propagationguide.html','#propagationguide'); break;
         case '#projects': navigate('projects.html','#projects'); break;
         case '#links': navigate('links.html','#links'); break;
         default: navigate('aboutme.html','#aboutme'); break;
